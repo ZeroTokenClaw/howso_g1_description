@@ -1,0 +1,5 @@
+<library path="howso_smac_planner">
+	<class type="howso_smac_planner::SmacPlannerHybrid" base_class_type="howso_core::GlobalPlanner">
+	  <description>Hybrid-A* SMAC planner</description>
+	</class>
+</library>

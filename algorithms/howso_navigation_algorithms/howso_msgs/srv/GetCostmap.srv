@@ -1,0 +1,6 @@
+# Get the costmap
+
+# Specifications for the requested costmap
+howso_msgs/CostmapMetaData specs
+---
+howso_msgs/Costmap map

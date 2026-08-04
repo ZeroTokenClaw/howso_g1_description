@@ -1,0 +1,5 @@
+<library path="howso_theta_star_planner">
+    <class type="howso_theta_star_planner::ThetaStarPlanner" base_class_type="howso_core::GlobalPlanner">
+        <description>An implementation of the Theta* Algorithm</description>
+    </class>
+</library>

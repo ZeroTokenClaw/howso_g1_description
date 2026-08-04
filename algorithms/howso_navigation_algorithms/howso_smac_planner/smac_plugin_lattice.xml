@@ -1,0 +1,5 @@
+<library path="howso_smac_planner_lattice">
+	<class type="howso_smac_planner::SmacPlannerLattice" base_class_type="howso_core::GlobalPlanner">
+	  <description>State Lattice SMAC planner</description>
+	</class>
+</library>

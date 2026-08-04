@@ -1,0 +1,120 @@
+// Copyright (c) 2022 Samsung Research America, @artofnothingness Alexey Budyakov
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#ifndef HOWSO_MPPI_CONTROLLER__CRITIC_MANAGER_HPP_
+#define HOWSO_MPPI_CONTROLLER__CRITIC_MANAGER_HPP_
+
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
+#include <pluginlib/class_loader.hpp>
+
+#include "geometry_msgs/msg/twist.hpp"
+#include "geometry_msgs/msg/twist_stamped.hpp"
+#include "howso_msgs/msg/critics_stats.hpp"
+
+#include "howso_costmap_2d/costmap_2d_ros.hpp"
+#include "rclcpp_lifecycle/lifecycle_node.hpp"
+
+#include "howso_mppi_controller/tools/parameters_handler.hpp"
+#include "howso_mppi_controller/tools/utils.hpp"
+#include "howso_mppi_controller/critic_data.hpp"
+#include "howso_mppi_controller/critic_function.hpp"
+
+namespace mppi
+{
+
+/**
+ * @class mppi::CriticManager
+ * @brief Manager of objective function plugins for scoring trajectories
+ */
+class CriticManager
+{
+public:
+  typedef std::vector<std::unique_ptr<critics::CriticFunction>> Critics;
+  /**
+    * @brief Constructor for mppi::CriticManager
+    */
+  CriticManager() = default;
+
+
+  /**
+    * @brief Virtual Destructor for mppi::CriticManager
+    */
+  virtual ~CriticManager() = default;
+
+  /**
+    * @brief Configure critic manager on bringup and load plugins
+    * @param parent WeakPtr to node
+    * @param name Name of plugin
+    * @param costmap_ros Costmap2DROS object of environment
+    * @param dynamic_parameter_handler Parameter handler object
+    */
+  void on_configure(
+    howso::LifecycleNode::WeakPtr parent, const std::string & name,
+    std::shared_ptr<howso_costmap_2d::Costmap2DROS>, ParametersHandler *);
+
+  /**
+    * @brief Score trajectories by the set of loaded critic functions
+    * @param CriticData Struct of necessary information to pass to the critic functions
+    */
+  void evalTrajectoriesScores(CriticData & data);
+
+  /**
+    * @brief Get stored per-critic costs from last evaluation
+    * @return Vector of (critic_name, cost_array) pairs
+    */
+  const std::vector<std::pair<std::string, Eigen::ArrayXf>> & getCriticCosts() const
+  {
+    return critic_costs_;
+  }
+
+protected:
+  /**
+    * @brief Get parameters (critics to load)
+    */
+  void getParams();
+
+  /**
+    * @brief Load the critic plugins
+    */
+  virtual void loadCritics();
+
+  /**
+    * @brief Get full-name namespaced critic IDs
+    */
+  std::string getFullName(const std::string & name);
+
+protected:
+  howso::LifecycleNode::WeakPtr parent_;
+  std::shared_ptr<howso_costmap_2d::Costmap2DROS> costmap_ros_;
+  std::string name_;
+
+  ParametersHandler * parameters_handler_;
+  std::vector<std::string> critic_names_;
+  std::unique_ptr<pluginlib::ClassLoader<critics::CriticFunction>> loader_;
+  Critics critics_;
+
+  howso::Publisher<howso_msgs::msg::CriticsStats>::SharedPtr critics_effect_pub_;
+  bool visualize_;
+  std::vector<std::pair<std::string, Eigen::ArrayXf>> critic_costs_;
+  rclcpp::Clock::SharedPtr clock_;
+
+  rclcpp::Logger logger_{rclcpp::get_logger("MPPIController")};
+};
+
+}  // namespace mppi
+
+#endif  // HOWSO_MPPI_CONTROLLER__CRITIC_MANAGER_HPP_

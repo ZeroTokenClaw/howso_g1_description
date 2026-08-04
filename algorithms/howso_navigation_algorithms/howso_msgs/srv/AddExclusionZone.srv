@@ -1,0 +1,6 @@
+# Add an exclusion zone to a collision monitor / detector source at runtime.
+
+howso_msgs/ExclusionZoneDescription zone
+---
+bool success
+string message
