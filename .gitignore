@@ -1,0 +1,12 @@
+node_modules/
+embodied-collect-frontend/node_modules/
+embodied-collect-backend/__pycache__/
+embodied-collect-backend/app/**/__pycache__/
+embodied-collect-backend/alembic/__pycache__/
+embodied-collect-frontend/dist/
+embodied-collect-backend/.env
+embodied-collect-frontend/embodied-collect-frontend.zip
+.codex-logs/
+*.pyc
+*.pyo
+.DS_Store
