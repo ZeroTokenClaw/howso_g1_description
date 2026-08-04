@@ -115,11 +115,11 @@ const AppSider = () => {
             display: "flex", alignItems: "center", justifyContent: "center",
             color: "#fff", fontWeight: 700, fontSize: 14, flexShrink: 0,
           }}>
-            中
+            华
           </span>
           {!collapsed && (
             <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", lineHeight: 1.35, textAlign: "left" }}>
-              中移物联网<br />数据采集与标注平台
+              华苏机器人<br />仿真平台
             </span>
           )}
         </button>
@@ -260,7 +260,7 @@ const AppSider = () => {
             <div style={{ marginBottom: 2 }}>
               <a href="#" style={{ color: "#aaa", textDecoration: "none" }}>隐私政策</a>
             </div>
-            <div>© 2026<br />中移物联网</div>
+            <div>© 2026<br />华苏机器人</div>
           </div>
         )}
 

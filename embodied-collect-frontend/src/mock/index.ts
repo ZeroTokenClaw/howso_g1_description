@@ -141,7 +141,7 @@ export const mockCollectionTasks = [
 ];
 
 export const mockSystemConfigs = [
-  { id: "s1", key: "platform_name", value: "中移物联网数据采集与标注平台", group: "基础", encrypted: false, updated: "2026/1/1" },
+  { id: "s1", key: "platform_name", value: "华苏机器人仿真平台", group: "基础", encrypted: false, updated: "2026/1/1" },
   { id: "s2", key: "max_upload_size_mb", value: "10240", group: "存储", encrypted: false, updated: "2026/1/1" },
   { id: "s3", key: "jwt_secret", value: "******", group: "安全", encrypted: true, updated: "2026/1/1" },
   { id: "s4", key: "minio_endpoint", value: "127.0.0.1:9000", group: "存储", encrypted: false, updated: "2026/1/1" },

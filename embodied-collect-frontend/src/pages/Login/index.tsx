@@ -46,9 +46,9 @@ const LoginPage = () => {
                 fontWeight: 700,
               }}
             >
-              中
+              华
             </div>
-            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1 }}>中移物联网数据采集与标注平台</span>
+            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: 1 }}>华苏机器人仿真平台</span>
           </div>
 
           <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 12, lineHeight: 1.3 }}>
@@ -159,7 +159,7 @@ const LoginPage = () => {
         </div>
 
         <div style={{ position: "absolute", bottom: 24, color: "#ccc", fontSize: 12 }}>
-          © 2023-2026 中移物联网 &nbsp;·&nbsp;
+          © 2023-2026 华苏机器人 &nbsp;·&nbsp;
           <a href="#" style={{ color: "#ccc" }}>隐私政策</a>
         </div>
       </div>
