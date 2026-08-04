@@ -13,7 +13,7 @@
 
 ## Howso Navigation Algorithms（华苏导航算法）
 
-项目已在 `algorithms/howso_navigation_algorithms` 中加入 Howso Navigation Algorithms（华苏导航算法）参考模块。该模块基于 ROS Navigation2 精选了路径规划、轨迹跟踪、代价地图和导航接口相关源码，用于机器人仿真平台后续的自主导航算法评估和集成设计。
+项目已在 `algorithms/howso_navigation_algorithms` 中加入 Howso Navigation Algorithms（华苏导航算法）参考模块。
 
 当前包含 Smac Planner、Theta*、NavFn、MPPI Controller、Regulated Pure Pursuit Controller、Costmap 2D 以及相关接口与消息包。详细说明见 `algorithms/howso_navigation_algorithms/README.md`。
 
